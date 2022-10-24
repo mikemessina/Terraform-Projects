@@ -1,4 +1,3 @@
-#
 trigger:
 - dev
 
@@ -10,18 +9,18 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '12-CI-CD-Pipelines/Azure-DevOps/AKS'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/12-CI-CD-Pipelines/Azure-DevOps/AKS'
     commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="clientSecret=$(clientSecret)" -var="location=$(location)"'
     backendServiceArm: 'Visual Studio Enterprise Subscription(4611ca1e-866d-48a2-9c61-bb92d9be1fe9)'
     backendAzureRmResourceGroupName: 'terraformstate-rg'
     backendAzureRmStorageAccountName: 'tfstatemwm102422'
     backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'terraform.state'
+    backendAzureRmKey: 'tf/terraform.state'
 
 - task: TerraformTaskV3@3
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: '12-CI-CD-Pipelines/Azure-DevOps/AKS'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/12-CI-CD-Pipelines/Azure-DevOps/AKS'
     commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="clientSecret=$(clientSecret)" -var="location=$(location)"'
     environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription(4611ca1e-866d-48a2-9c61-bb92d9be1fe9)'
