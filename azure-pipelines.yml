@@ -14,7 +14,7 @@ steps:
     commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="clientSecret=$(clientSecret)" -var="location=$(location)"'
     backendServiceArm: 'Visual Studio Enterprise Subscription(4611ca1e-866d-48a2-9c61-bb92d9be1fe9)'
     backendAzureRmResourceGroupName: 'terraformstate-rg'
-    backendAzureRmStorageAccountName: 'terrastatestore101022'
+    backendAzureRmStorageAccountName: 'tfstatemwm102422'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'terraform.state'
 
