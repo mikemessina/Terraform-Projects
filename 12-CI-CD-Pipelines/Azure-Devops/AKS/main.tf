@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name = "Dev10"
-    storage_account_name = "cloudskillstfstate92"
+    resource_group_name = "terraformstate-rg"
+    storage_account_name = "terrastatestore101022"
     container_name = "tfstate"
     key = "terraform.state"
   }
