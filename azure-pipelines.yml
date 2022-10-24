@@ -16,7 +16,7 @@ steps:
     backendAzureRmResourceGroupName: 'terraformstate-rg'
     backendAzureRmStorageAccountName: 'terrastatestore101022'
     backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'tf/terraform.tfstate'
+    backendAzureRmKey: 'terraform.state'
 
 - task: TerraformTaskV3@3
   inputs:
