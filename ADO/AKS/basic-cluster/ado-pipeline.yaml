@@ -1,0 +1,26 @@
+# trigger:
+# - dev
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/ADO/AKS/basic-cluster'
+    commandOptions: '-var="prefix=$(prefix)" -var="location=$(location)"'
+    backendServiceArm: 'Visual Studio Enterprise Subscription(4611ca1e-866d-48a2-9c61-bb92d9be1fe9)'
+    backendAzureRmResourceGroupName: 'terraformstate-rg'
+    backendAzureRmStorageAccountName: 'tfstatemwm102422'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'tf/terraform.state'
+
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/12-CI-CD-Pipelines/Azure-DevOps/AKS'
+    commandOptions: '-var="prefix=$(prefix)" -var="location=$(location)"'
+    environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription(4611ca1e-866d-48a2-9c61-bb92d9be1fe9)'
